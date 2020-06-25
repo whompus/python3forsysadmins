@@ -22,9 +22,9 @@ else:
     print(line)
 ```
 
-# ------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
 
-# 2: Interacting With External Commands
+### 2: Interacting With External Commands
 
 ```python
 #!/usr/bin/env python3.6
@@ -64,7 +64,7 @@ else:
 
 ------------------------------------------------------------------------------------------------
 
-# 3: Setting Exit Status On Errors
+### 3: Setting Exit Status On Errors
 
 ```python
 #!/usr/bin/env python3.6
@@ -107,7 +107,7 @@ else:
 
 ------------------------------------------------------------------------------------------------
 
-# 4: Utilizing Third-Party Packages
+### 4: Utilizing Third-Party Packages
 
 ```python
 
@@ -150,7 +150,7 @@ with open(args.filename, 'w', encoding='UTF-8') as f:
 
 ------------------------------------------------------------------------------------------------
 
-# 5. Creating a Python Project
+### 5. Creating a Python Project
 
 There's more than one way to set up a project, but here's one way that you could. First, set up the project's folder structure:
 
@@ -203,7 +203,7 @@ $ git commit -m 'Initial commit.'
 
 ------------------------------------------------------------------------------------------------
 
-# 6: Test Drive Building A Cli Parser
+### 6: Test Drive Building A Cli Parser
 
 Here are some example tests:
 
@@ -260,7 +260,7 @@ def create_parser():
 
 ------------------------------------------------------------------------------------------------
 
-# 7: Implementing User Management
+### 7: Implementing User Management
 
 *tests/test_users.py*
 
@@ -488,7 +488,7 @@ Removing user 'kevin'
 
 ------------------------------------------------------------------------------------------------
 
-# 8: Json Parsing And Exporting
+### 8: Json Parsing And Exporting
 
 *tests/test_inventory.py*
 
@@ -697,7 +697,7 @@ $ cat inventory.json
 
 ------------------------------------------------------------------------------------------------
 
-# 9: Creating The Console Script
+### 9: Creating The Console Script
 
 Here’s an example main function that was added to the cli module:
 
@@ -767,7 +767,7 @@ optional arguments:
 
 ------------------------------------------------------------------------------------------------
 
-# 10: Building A Wheel Distribution
+### 10: Building A Wheel Distribution
 
 Extra metadata file:
 
