@@ -35,7 +35,7 @@ if not api_key:
     print("Error: no API key provided")
     sys.exit(1)
 
-# make API call
+# construct API call and response
 def api_call():
     # define URL to hit
     url = f"http://api.openweathermap.org/data/2.5/weather?zip={args.zip},{args.country}&appid={api_key}&units=imperial"
