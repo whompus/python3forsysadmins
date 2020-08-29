@@ -1,4 +1,4 @@
-#!/Users/whompus/projects/venvs/weather/bin/python
+#!/usr/bin/env python3
 
 # cli for getting current temperature from a given location
 # script defaults to Longmont, CO, but you can specify any zip or country of your choosing
@@ -30,36 +30,45 @@ args = parser.parse_args()
 # set the API key from environment variable
 api_key = os.getenv('OWM_API_KEY')
 
-# check to see if API key is loaded
+# check to see if API key is present
 if not api_key:
     print("Error: no API key provided")
     sys.exit(1)
 
-# define URL to hit
-url = f"http://api.openweathermap.org/data/2.5/weather?zip={args.zip},{args.country}&appid={api_key}&units=imperial"
-
 # make API call
-res = requests.get(url)
+def api_call():
+    # define URL to hit
+    url = f"http://api.openweathermap.org/data/2.5/weather?zip={args.zip},{args.country}&appid={api_key}&units=imperial"
 
-if res.status_code != 200:
-    print(f"Error talking to weather provider: {res.status_code}")
-    sys.exit(2)
+    # construct GET request
+    res = requests.get(url)
+    
+    if res.status_code != 200:
+        print(f"Error talking to weather provider: {res.status_code}")
+        sys.exit(2)
 
-# serialize json to a string
-# data = json.dumps(res.json(), indent=2)
+    # serialize json to a string
+    # data = json.dumps(res.json(), indent=2)
 
-# deserialize to a python dictionary object
-# parse = json.loads(data)
+    # deserialize to a python dictionary object
+    # parse = json.loads(data)
 
-# this way way easier; grabs raw text/json output, then deserializes it into a dict object
-parse = json.loads(res.text)
+    # this way way easier than above; grabs raw text/json output, then deserializes it into a dict object
+    parse = json.loads(res.text)
 
-#  extracting the data we need from the returned json
-actual_temp = parse["main"]['temp']
-relative_temp = parse["main"]['feels_like']
-high = parse["main"]['temp_max']
-low = parse["main"]['temp_min']
+    location_name = parse["name"]
+    actual_temp = parse["main"]['temp']
+    relative_temp = parse["main"]['feels_like']
+    high = parse["main"]['temp_max']
+    low = parse["main"]['temp_min']
 
-print(f'**Current temperature conditions for {parse["name"]}**\n Actual temp: {actual_temp}F\n Feels like: {relative_temp}\n High: {high}F\n Low: {low}F')
+    print(f'**Current temperature conditions for {location_name}**\n Actual temp: {actual_temp}F\n Feels like: {relative_temp}\n High: {high}F\n Low: {low}F')
 
-# print(res.json())
+if __name__ == "__main__":
+    location = str(args.zip)
+
+    if location.isdigit():
+        api_call()
+    else:
+        print(f"'{location}' not accepted, location must be in zip format: 80305, 90210, etc.")
+        sys.exit(3)
